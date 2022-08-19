@@ -1,16 +1,9 @@
 sap.ui.define([
     "sap/ui/model/json/JSONModel",
+    "pl/capgemini/damjur/pwatesteditable/model/ODataModelWithCache",
     "sap/ui/Device"
-], 
-    /**
-     * provide app-view type models (as in the first "V" in MVVC)
-     * 
-     * @param {typeof sap.ui.model.json.JSONModel} JSONModel
-     * @param {typeof sap.ui.Device} Device
-     * 
-     * @returns {Function} createDeviceModel() for providing runtime info for the device the UI5 app is running on
-     */
-    function (JSONModel, Device) {
+],
+    function (JSONModel, OData, Device) {
         "use strict";
 
         return {
@@ -18,6 +11,24 @@ sap.ui.define([
                 var oModel = new JSONModel(Device);
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
-        }
-    };
-});
+            },
+            createServiceModel: function (sServiceUrl, mParameters, oComponent) {
+                return new Promise(function (resolve, reject) {
+                    try {
+                        var oServiceModel = new OData(sServiceUrl, null, oComponent);
+                        oComponent.setModel(oServiceModel);
+                        oServiceModel.setUseBatch(false);
+                        oServiceModel.setDefaultBindingMode("TwoWay");
+
+                        oServiceModel.metadataLoaded()
+                            .then(function () {
+                                resolve(oServiceModel);
+                            });
+                    } catch (err) {
+                        reject(err);
+                    }
+                });
+            }
+        };
+    }
+);
