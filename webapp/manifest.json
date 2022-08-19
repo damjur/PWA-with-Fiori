@@ -1,0 +1,150 @@
+{
+  "_version": "1.37.0",
+  "sap.app": {
+    "id": "pl.capgemini.damjur.pwatesteditable",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.7.0",
+      "toolsId": "600e5e31-4208-46c9-aa78-970d69e161d1"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/(S(a5zsvzgiix23xhmah1xvd4yz))/OData/OData.svc/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.102.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "pl.capgemini.damjur.pwatesteditable.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "useBatch":false
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "pl.capgemini.damjur.pwatesteditable.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "Categories",
+          "pattern": ":?query:",
+          "target": [
+            "Categories"
+          ]
+        },{
+          "name": "Category",
+          "pattern": "Category({id})",
+          "target": [
+            "Category"
+          ]
+        },{
+          "name": "Product",
+          "pattern": "Product({id})",
+          "target": [
+            "Product"
+          ]
+        }
+      ],
+      "targets": {
+        "Categories": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Categories",
+          "viewName": "Categories"
+        },
+        "Category": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Category",
+          "viewName": "Category"
+        },
+        "Product": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Product",
+          "viewName": "Product"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "pl.capgemini.damjur.pwatesteditable.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

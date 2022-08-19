@@ -1,0 +1,11 @@
+<mvc:View controllerName="pl.capgemini.damjur.pwatesteditable.controller.Category"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{Name}">
+        <content>
+            <List items="{Products}" growing="true">
+                <ObjectListItem title="{Name}" press="toDetails" type="Navigation"/>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

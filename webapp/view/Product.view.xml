@@ -1,0 +1,24 @@
+<mvc:View controllerName="pl.capgemini.damjur.pwatesteditable.controller.Product"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Page id="page" showHeader="true">
+        <content>
+           <form:SimpleForm editable="true">
+                <Label text="Name"/>
+                <Input value="{Name}"/>
+                <Label text="Description"/>
+                <Input value="{Description}"/>
+           </form:SimpleForm>
+        </content>
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Title text="{ID} - {Description}"/>
+                </contentLeft>
+                <contentRight>
+                    <Button text="Save" press="onSave"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
+    </Page>
+</mvc:View>
